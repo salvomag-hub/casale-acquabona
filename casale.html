@@ -1195,6 +1195,57 @@
             fill: white;
         }
 
+        /* ========== LANGUAGE SWITCHER ========== */
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-left: 1.5rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.45;
+            transition: opacity 0.3s, transform 0.3s;
+            padding: 0.2rem;
+            line-height: 1;
+        }
+
+        .lang-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.15);
+        }
+
+        .lang-btn.active {
+            opacity: 1;
+        }
+
+        .mobile-lang-switcher {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .mobile-lang-switcher .lang-btn {
+            font-size: 1.8rem;
+            opacity: 0.4;
+        }
+
+        .mobile-lang-switcher .lang-btn.active {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .lang-switcher { display: none; }
+        }
+
+        /* Room card hover text per language */
+        body[data-lang="en"] .room-card::after { content: 'Discover →'; }
+        body[data-lang="de"] .room-card::after { content: 'Entdecken →'; }
+
         /* ========== VISUAL ENHANCEMENTS ========== */
 
         /* Parallax-like hero */
@@ -1771,21 +1822,26 @@
         }
     </style>
 </head>
-<body>
+<body data-lang="it">
 
     <!-- Navigation -->
     <nav id="navbar">
         <a href="#" class="logo">Acquabona</a>
         <ul class="nav-links">
-            <li><a href="#offerte">Offerte</a></li>
-            <li><a href="#camere">Camere</a></li>
-            <li><a href="#galleria">Galleria</a></li>
-            <li><a href="#ristorante">Ristorante</a></li>
-            <li><a href="#territorio">Territorio</a></li>
-            <li><a href="#chi-siamo">Chi Siamo</a></li>
-            <li><a href="#recensioni">Recensioni</a></li>
-            <li><a href="#contatti">Contatti</a></li>
+            <li><a href="#offerte" data-i18n="nav.offerte">Offerte</a></li>
+            <li><a href="#camere" data-i18n="nav.camere">Camere</a></li>
+            <li><a href="#galleria" data-i18n="nav.galleria">Galleria</a></li>
+            <li><a href="#ristorante" data-i18n="nav.ristorante">Ristorante</a></li>
+            <li><a href="#territorio" data-i18n="nav.territorio">Territorio</a></li>
+            <li><a href="#chi-siamo" data-i18n="nav.chi_siamo">Chi Siamo</a></li>
+            <li><a href="#recensioni" data-i18n="nav.recensioni">Recensioni</a></li>
+            <li><a href="#contatti" data-i18n="nav.contatti">Contatti</a></li>
         </ul>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('it')" title="Italiano">&#127470;&#127481;</button>
+            <button class="lang-btn" onclick="setLanguage('en')" title="English">&#127468;&#127463;</button>
+            <button class="lang-btn" onclick="setLanguage('de')" title="Deutsch">&#127465;&#127466;</button>
+        </div>
         <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
             <span></span>
             <span></span>
@@ -1795,14 +1851,19 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#offerte">Offerte</a>
-        <a href="#camere">Camere</a>
-        <a href="#galleria">Galleria</a>
-        <a href="#ristorante">Ristorante</a>
-        <a href="#territorio">Territorio</a>
-        <a href="#chi-siamo">Chi Siamo</a>
-        <a href="#recensioni">Recensioni</a>
-        <a href="#contatti">Contatti</a>
+        <div class="mobile-lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('it')" title="Italiano">&#127470;&#127481;</button>
+            <button class="lang-btn" onclick="setLanguage('en')" title="English">&#127468;&#127463;</button>
+            <button class="lang-btn" onclick="setLanguage('de')" title="Deutsch">&#127465;&#127466;</button>
+        </div>
+        <a href="#offerte" data-i18n="nav.offerte">Offerte</a>
+        <a href="#camere" data-i18n="nav.camere">Camere</a>
+        <a href="#galleria" data-i18n="nav.galleria">Galleria</a>
+        <a href="#ristorante" data-i18n="nav.ristorante">Ristorante</a>
+        <a href="#territorio" data-i18n="nav.territorio">Territorio</a>
+        <a href="#chi-siamo" data-i18n="nav.chi_siamo">Chi Siamo</a>
+        <a href="#recensioni" data-i18n="nav.recensioni">Recensioni</a>
+        <a href="#contatti" data-i18n="nav.contatti">Contatti</a>
     </div>
 
     <!-- Hero -->
@@ -1810,16 +1871,16 @@
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="hero-subtitle">Agriturismo di Charme &mdash; Montefano</div>
-            <h1 class="hero-title">Casale<br>dell'Acquabona</h1>
-            <p class="hero-desc">Un'oasi di pace immersa nelle colline marchigiane, tra il profumo della campagna e la brezza del mare Adriatico.</p>
+            <div class="hero-subtitle" data-i18n="hero.subtitle">Agriturismo di Charme &mdash; Montefano</div>
+            <h1 class="hero-title" data-i18n-html="hero.title">Casale<br>dell'Acquabona</h1>
+            <p class="hero-desc" data-i18n="hero.desc">Un'oasi di pace immersa nelle colline marchigiane, tra il profumo della campagna e la brezza del mare Adriatico.</p>
             <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;">
-                <a href="javascript:void(0)" onclick="openModal('Richiesta Prenotazione', 0)" class="hero-cta" style="background:var(--accent);color:var(--dark);border-color:var(--accent);font-weight:600;margin-top:0;">&#9742; Prenota Ora</a>
-                <a href="#camere" class="hero-cta" style="margin-top:0;">Scopri le Camere</a>
+                <a href="javascript:void(0)" onclick="openModal('Richiesta Prenotazione', 0)" class="hero-cta" style="background:var(--accent);color:var(--dark);border-color:var(--accent);font-weight:600;margin-top:0;" data-i18n-html="hero.cta_book">&#9742; Prenota Ora</a>
+                <a href="#camere" class="hero-cta" style="margin-top:0;" data-i18n="hero.cta_rooms">Scopri le Camere</a>
             </div>
         </div>
         <div class="scroll-indicator">
-            <span>Scorri</span>
+            <span data-i18n="hero.scroll">Scorri</span>
             <div class="scroll-line"></div>
         </div>
     </section>
@@ -1827,28 +1888,28 @@
     <!-- Offerte -->
     <section class="offers" id="offerte">
         <div class="section-header">
-            <div class="section-label fade-up">Esperienze Esclusive</div>
-            <h2 class="section-title fade-up">Le Nostre Offerte</h2>
-            <p class="section-subtitle fade-up">Pacchetti pensati per farvi vivere le Marche nel modo migliore</p>
+            <div class="section-label fade-up" data-i18n="offerte.label">Esperienze Esclusive</div>
+            <h2 class="section-title fade-up" data-i18n="offerte.title">Le Nostre Offerte</h2>
+            <p class="section-subtitle fade-up" data-i18n="offerte.subtitle">Pacchetti pensati per farvi vivere le Marche nel modo migliore</p>
         </div>
         <div class="offers-grid">
             <div class="offer-card fade-up" onclick="openModal('Weekend Romantico', 290)">
                 <div class="offer-number">01</div>
-                <h3 class="offer-title">Weekend Romantico</h3>
-                <p class="offer-desc">2 notti per 2 persone con colazione contadina, cena romantica a lume di candela e bottiglia di Rosso Conero.</p>
-                <div class="offer-price">&euro;290 <span>/ coppia</span></div>
+                <h3 class="offer-title" data-i18n="offerte.o1_title">Weekend Romantico</h3>
+                <p class="offer-desc" data-i18n="offerte.o1_desc">2 notti per 2 persone con colazione contadina, cena romantica a lume di candela e bottiglia di Rosso Conero.</p>
+                <div class="offer-price" data-i18n-html="offerte.o1_price">&euro;290 <span>/ coppia</span></div>
             </div>
             <div class="offer-card fade-up" onclick="openModal('Settimana Relax', 750)">
                 <div class="offer-number">02</div>
-                <h3 class="offer-title">Settimana Relax</h3>
-                <p class="offer-desc">7 notti con colazione bio, una cena inclusa, accesso al giardino con vista colline e late check-out.</p>
-                <div class="offer-price">&euro;750 <span>/ coppia</span></div>
+                <h3 class="offer-title" data-i18n="offerte.o2_title">Settimana Relax</h3>
+                <p class="offer-desc" data-i18n="offerte.o2_desc">7 notti con colazione bio, una cena inclusa, accesso al giardino con vista colline e late check-out.</p>
+                <div class="offer-price" data-i18n-html="offerte.o2_price">&euro;750 <span>/ coppia</span></div>
             </div>
             <div class="offer-card fade-up" onclick="openModal('Esperienza Natura', 480)">
                 <div class="offer-number">03</div>
-                <h3 class="offer-title">Esperienza Natura</h3>
-                <p class="offer-desc">3 notti con trekking guidato nei Sibillini, degustazione vini e pranzo con prodotti a km zero.</p>
-                <div class="offer-price">&euro;480 <span>/ coppia</span></div>
+                <h3 class="offer-title" data-i18n="offerte.o3_title">Esperienza Natura</h3>
+                <p class="offer-desc" data-i18n="offerte.o3_desc">3 notti con trekking guidato nei Sibillini, degustazione vini e pranzo con prodotti a km zero.</p>
+                <div class="offer-price" data-i18n-html="offerte.o3_price">&euro;480 <span>/ coppia</span></div>
             </div>
         </div>
     </section>
@@ -1856,9 +1917,9 @@
     <!-- Camere -->
     <section class="rooms" id="camere">
         <div class="section-header">
-            <div class="section-label fade-up">Ospitalit&agrave;</div>
-            <h2 class="section-title fade-up">Le Nostre Camere</h2>
-            <p class="section-subtitle fade-up">Travi a vista, letti in ferro battuto e il silenzio della campagna marchigiana</p>
+            <div class="section-label fade-up" data-i18n="camere.label">Ospitalit&agrave;</div>
+            <h2 class="section-title fade-up" data-i18n="camere.title">Le Nostre Camere</h2>
+            <p class="section-subtitle fade-up" data-i18n="camere.subtitle">Travi a vista, letti in ferro battuto e il silenzio della campagna marchigiana</p>
         </div>
         <div class="rooms-grid">
             <div class="room-card" onclick="openModal('Camera Matrimoniale', 90)">
@@ -1867,13 +1928,13 @@
                     <img src="camera-matrimoniale.jpeg" alt="Camera Matrimoniale - Casale dell'Acquabona" loading="lazy">
                 </picture>
                 <div class="room-overlay">
-                    <h3 class="room-name">Camera Matrimoniale</h3>
+                    <h3 class="room-name" data-i18n="camere.r1_name">Camera Matrimoniale</h3>
                     <div class="room-features">
-                        <span class="room-feature">Letto Ferro Battuto</span>
-                        <span class="room-feature">Travi a Vista</span>
-                        <span class="room-feature">Climatizzata</span>
+                        <span class="room-feature" data-i18n="camere.r1_f1">Letto Ferro Battuto</span>
+                        <span class="room-feature" data-i18n="camere.r1_f2">Travi a Vista</span>
+                        <span class="room-feature" data-i18n="camere.r1_f3">Climatizzata</span>
                     </div>
-                    <div class="room-price-tag">da &euro;90 <span>/ notte</span></div>
+                    <div class="room-price-tag" data-i18n-html="camere.r1_price">da &euro;90 <span>/ notte</span></div>
                 </div>
             </div>
             <div class="room-card" onclick="openModal('Camera Superior', 110)">
@@ -1882,13 +1943,13 @@
                     <img src="camera-superior.jpeg" alt="Camera Superior con lucernario - Casale dell'Acquabona" loading="lazy">
                 </picture>
                 <div class="room-overlay">
-                    <h3 class="room-name">Camera Superior</h3>
+                    <h3 class="room-name" data-i18n="camere.r2_name">Camera Superior</h3>
                     <div class="room-features">
-                        <span class="room-feature">Lucernario</span>
-                        <span class="room-feature">Vista Colline</span>
-                        <span class="room-feature">Bagno Privato</span>
+                        <span class="room-feature" data-i18n="camere.r2_f1">Lucernario</span>
+                        <span class="room-feature" data-i18n="camere.r2_f2">Vista Colline</span>
+                        <span class="room-feature" data-i18n="camere.r2_f3">Bagno Privato</span>
                     </div>
-                    <div class="room-price-tag">da &euro;110 <span>/ notte</span></div>
+                    <div class="room-price-tag" data-i18n-html="camere.r2_price">da &euro;110 <span>/ notte</span></div>
                 </div>
             </div>
             <div class="room-card" onclick="openModal('Camera Familiare', 130)">
@@ -1897,13 +1958,13 @@
                     <img src="camera-familiare.jpeg" alt="Camera Familiare spaziosa - Casale dell'Acquabona" loading="lazy">
                 </picture>
                 <div class="room-overlay">
-                    <h3 class="room-name">Camera Familiare</h3>
+                    <h3 class="room-name" data-i18n="camere.r3_name">Camera Familiare</h3>
                     <div class="room-features">
-                        <span class="room-feature">Spaziosa</span>
-                        <span class="room-feature">Letto Extra</span>
-                        <span class="room-feature">Travi a Vista</span>
+                        <span class="room-feature" data-i18n="camere.r3_f1">Spaziosa</span>
+                        <span class="room-feature" data-i18n="camere.r3_f2">Letto Extra</span>
+                        <span class="room-feature" data-i18n="camere.r3_f3">Travi a Vista</span>
                     </div>
-                    <div class="room-price-tag">da &euro;130 <span>/ notte</span></div>
+                    <div class="room-price-tag" data-i18n-html="camere.r3_price">da &euro;130 <span>/ notte</span></div>
                 </div>
             </div>
         </div>
@@ -1917,8 +1978,8 @@
         </picture>
         <div class="panorama-overlay">
             <div class="panorama-text fade-up">
-                <h2>Il panorama che vi aspetta</h2>
-                <p>Le colline marchigiane viste dal Casale</p>
+                <h2 data-i18n="panorama.title">Il panorama che vi aspetta</h2>
+                <p data-i18n="panorama.subtitle">Le colline marchigiane viste dal Casale</p>
             </div>
         </div>
     </div>
@@ -1926,8 +1987,8 @@
     <!-- Galleria -->
     <section class="gallery" id="galleria">
         <div class="section-header">
-            <div class="section-label fade-up">Scopri il Casale</div>
-            <h2 class="section-title fade-up">Galleria</h2>
+            <div class="section-label fade-up" data-i18n="galleria.label">Scopri il Casale</div>
+            <h2 class="section-title fade-up" data-i18n="galleria.title">Galleria</h2>
         </div>
         <div class="gallery-grid">
             <div class="gallery-item">
@@ -1935,35 +1996,35 @@
                     <source srcset="casale-esterno.webp" type="image/webp">
                     <img src="casale-esterno.jpg" alt="Facciata del Casale dell'Acquabona al tramonto" loading="lazy">
                 </picture>
-                <span class="gallery-label">Il Casale al Tramonto</span>
+                <span class="gallery-label" data-i18n="galleria.l1">Il Casale al Tramonto</span>
             </div>
             <div class="gallery-item">
                 <picture>
                     <source srcset="vista-colline.webp" type="image/webp">
                     <img src="vista-colline.jpg" alt="Panorama colline marchigiane" loading="lazy">
                 </picture>
-                <span class="gallery-label">Il Panorama</span>
+                <span class="gallery-label" data-i18n="galleria.l2">Il Panorama</span>
             </div>
             <div class="gallery-item">
                 <picture>
                     <source srcset="interni-scala.webp" type="image/webp">
                     <img src="interni-scala.jpeg" alt="Scala interna in legno" loading="lazy">
                 </picture>
-                <span class="gallery-label">Gli Interni</span>
+                <span class="gallery-label" data-i18n="galleria.l3">Gli Interni</span>
             </div>
             <div class="gallery-item">
                 <picture>
                     <source srcset="camera-matrimoniale.webp" type="image/webp">
                     <img src="camera-matrimoniale.jpeg" alt="Camera matrimoniale" loading="lazy">
                 </picture>
-                <span class="gallery-label">Le Camere</span>
+                <span class="gallery-label" data-i18n="galleria.l4">Le Camere</span>
             </div>
             <div class="gallery-item">
                 <picture>
                     <source srcset="bagno.webp" type="image/webp">
                     <img src="bagno.jpeg" alt="Bagno con doccia e finiture in legno" loading="lazy">
                 </picture>
-                <span class="gallery-label">I Bagni</span>
+                <span class="gallery-label" data-i18n="galleria.l5">I Bagni</span>
             </div>
         </div>
     </section>
@@ -1974,9 +2035,9 @@
             <img src="https://media-cdn.tripadvisor.com/media/photo-s/0c/68/ac/8d/il-casale-dell-acquabona.jpg" alt="Ristorante del Casale" loading="lazy">
         </div>
         <div class="ristorante-content">
-            <div class="section-label fade-up">Gastronomia</div>
-            <h2 class="section-title fade-up">&laquo;Si mangia quello che c'&egrave;!&raquo;</h2>
-            <p class="ristorante-text fade-up">
+            <div class="section-label fade-up" data-i18n="ristorante.label">Gastronomia</div>
+            <h2 class="section-title fade-up" data-i18n="ristorante.title">&laquo;Si mangia quello che c'&egrave;!&raquo;</h2>
+            <p class="ristorante-text fade-up" data-i18n="ristorante.desc">
                 Il nostro motto racconta tutto: al Casale la cucina &egrave; autentica,
                 semplice e preparata con amore. Ingredienti coltivati nel nostro orto,
                 carni dall'allevamento aziendale, formaggi di pecora e vini DOC
@@ -1986,22 +2047,22 @@
             <div class="ristorante-highlights fade-up">
                 <div class="highlight-item">
                     <div class="highlight-icon">&#127813;</div>
-                    <h4>Km Zero</h4>
-                    <p>Prodotti dal nostro orto</p>
+                    <h4 data-i18n="ristorante.h1_title">Km Zero</h4>
+                    <p data-i18n="ristorante.h1_desc">Prodotti dal nostro orto</p>
                 </div>
                 <div class="highlight-item">
                     <div class="highlight-icon">&#127863;</div>
-                    <h4>Vini DOC</h4>
-                    <p>Selezione marchigiana</p>
+                    <h4 data-i18n="ristorante.h2_title">Vini DOC</h4>
+                    <p data-i18n="ristorante.h2_desc">Selezione marchigiana</p>
                 </div>
                 <div class="highlight-item">
                     <div class="highlight-icon">&#127858;</div>
-                    <h4>Colazione</h4>
+                    <h4 data-i18n="ristorante.h3_title">Colazione</h4>
                     <p>8:00 &ndash; 10:00</p>
                 </div>
                 <div class="highlight-item">
                     <div class="highlight-icon">&#127769;</div>
-                    <h4>Cena</h4>
+                    <h4 data-i18n="ristorante.h4_title">Cena</h4>
                     <p>19:30 &ndash; 21:30</p>
                 </div>
             </div>
@@ -2011,73 +2072,73 @@
     <!-- Territorio -->
     <section class="territorio" id="territorio">
         <div class="section-header">
-            <div class="section-label fade-up">Esplora le Marche</div>
-            <h2 class="section-title fade-up">Il Territorio</h2>
-            <p class="section-subtitle fade-up">Tra arte, mare e montagna: tutto a portata di mano dal Casale</p>
+            <div class="section-label fade-up" data-i18n="territorio.label">Esplora le Marche</div>
+            <h2 class="section-title fade-up" data-i18n="territorio.title">Il Territorio</h2>
+            <p class="section-subtitle fade-up" data-i18n="territorio.subtitle">Tra arte, mare e montagna: tutto a portata di mano dal Casale</p>
         </div>
         <div class="territorio-grid">
             <div class="territorio-card fade-up">
                 <div class="territorio-icon">&#127970;</div>
-                <div class="territorio-card-tag">Cultura &amp; Poesia</div>
-                <h3>Recanati</h3>
-                <p>La citt&agrave; di Giacomo Leopardi e il celebre Colle dell'Infinito. Visitate Casa Leopardi, il Museo Beniamino Gigli e perdetevi tra i vicoli del borgo con panorami mozzafiato.</p>
-                <span class="territorio-distance">&rarr; 20 minuti in auto</span>
+                <div class="territorio-card-tag" data-i18n="territorio.t1_tag">Cultura &amp; Poesia</div>
+                <h3 data-i18n="territorio.t1_title">Recanati</h3>
+                <p data-i18n="territorio.t1_desc">La citt&agrave; di Giacomo Leopardi e il celebre Colle dell'Infinito. Visitate Casa Leopardi, il Museo Beniamino Gigli e perdetevi tra i vicoli del borgo con panorami mozzafiato.</p>
+                <span class="territorio-distance" data-i18n-html="territorio.t1_dist">&rarr; 20 minuti in auto</span>
             </div>
             <div class="territorio-card fade-up">
                 <div class="territorio-icon">&#127958;</div>
-                <div class="territorio-card-tag">Mare &amp; Spiagge</div>
-                <h3>Riviera del Conero</h3>
-                <p>Spiagge Bandiera Blu, calette tra falesie bianche e acque cristalline. Sirolo, Numana e Portonovo: il paradiso dell'Adriatico per le vostre estati.</p>
-                <span class="territorio-distance">&rarr; 30 minuti in auto</span>
+                <div class="territorio-card-tag" data-i18n="territorio.t2_tag">Mare &amp; Spiagge</div>
+                <h3 data-i18n="territorio.t2_title">Riviera del Conero</h3>
+                <p data-i18n="territorio.t2_desc">Spiagge Bandiera Blu, calette tra falesie bianche e acque cristalline. Sirolo, Numana e Portonovo: il paradiso dell'Adriatico per le vostre estati.</p>
+                <span class="territorio-distance" data-i18n-html="territorio.t2_dist">&rarr; 30 minuti in auto</span>
             </div>
             <div class="territorio-card fade-up">
                 <div class="territorio-icon">&#9962;</div>
-                <div class="territorio-card-tag">Fede &amp; Storia</div>
-                <h3>Loreto</h3>
-                <p>Il Santuario della Santa Casa, meta di pellegrinaggio da tutto il mondo. Una basilica maestosa nel cuore delle colline marchigiane.</p>
-                <span class="territorio-distance">&rarr; 25 minuti in auto</span>
+                <div class="territorio-card-tag" data-i18n="territorio.t3_tag">Fede &amp; Storia</div>
+                <h3 data-i18n="territorio.t3_title">Loreto</h3>
+                <p data-i18n="territorio.t3_desc">Il Santuario della Santa Casa, meta di pellegrinaggio da tutto il mondo. Una basilica maestosa nel cuore delle colline marchigiane.</p>
+                <span class="territorio-distance" data-i18n-html="territorio.t3_dist">&rarr; 25 minuti in auto</span>
             </div>
             <div class="territorio-card fade-up">
                 <div class="territorio-icon">&#127917;</div>
-                <div class="territorio-card-tag">Arte &amp; Spettacolo</div>
-                <h3>Macerata</h3>
-                <p>Lo Sferisterio, teatro all'aperto che ogni estate ospita il Macerata Opera Festival. Centro storico universitario elegante e vivace.</p>
-                <span class="territorio-distance">&rarr; 15 minuti in auto</span>
+                <div class="territorio-card-tag" data-i18n="territorio.t4_tag">Arte &amp; Spettacolo</div>
+                <h3 data-i18n="territorio.t4_title">Macerata</h3>
+                <p data-i18n="territorio.t4_desc">Lo Sferisterio, teatro all'aperto che ogni estate ospita il Macerata Opera Festival. Centro storico universitario elegante e vivace.</p>
+                <span class="territorio-distance" data-i18n-html="territorio.t4_dist">&rarr; 15 minuti in auto</span>
             </div>
             <div class="territorio-card fade-up">
                 <div class="territorio-icon">&#9968;</div>
-                <div class="territorio-card-tag">Natura &amp; Avventura</div>
-                <h3>Monti Sibillini</h3>
-                <p>Parco Nazionale: trekking, Lago di Fiastra, Gola dell'Infernaccio e la leggendaria fioritura di Castelluccio. Natura incontaminata.</p>
-                <span class="territorio-distance">&rarr; 60 minuti in auto</span>
+                <div class="territorio-card-tag" data-i18n="territorio.t5_tag">Natura &amp; Avventura</div>
+                <h3 data-i18n="territorio.t5_title">Monti Sibillini</h3>
+                <p data-i18n="territorio.t5_desc">Parco Nazionale: trekking, Lago di Fiastra, Gola dell'Infernaccio e la leggendaria fioritura di Castelluccio. Natura incontaminata.</p>
+                <span class="territorio-distance" data-i18n-html="territorio.t5_dist">&rarr; 60 minuti in auto</span>
             </div>
             <div class="territorio-card fade-up">
                 <div class="territorio-icon">&#127969;</div>
-                <div class="territorio-card-tag">Il Nostro Borgo</div>
-                <h3>Montefano</h3>
-                <p>Borgo medievale con il grazioso Teatro La Rondinella (1887), gioiello &laquo;bomboniera&raquo; da 150 posti progettato dal direttore tecnico del Teatro La Fenice di Venezia. Qui nacque nel 1501 Papa Marcello II, l'ultimo pontefice a usare il proprio nome.</p>
-                <span class="territorio-distance">&rarr; 5 minuti in auto</span>
+                <div class="territorio-card-tag" data-i18n="territorio.t6_tag">Il Nostro Borgo</div>
+                <h3 data-i18n="territorio.t6_title">Montefano</h3>
+                <p data-i18n="territorio.t6_desc">Borgo medievale con il grazioso Teatro La Rondinella (1887), gioiello &laquo;bomboniera&raquo; da 150 posti progettato dal direttore tecnico del Teatro La Fenice di Venezia. Qui nacque nel 1501 Papa Marcello II, l'ultimo pontefice a usare il proprio nome.</p>
+                <span class="territorio-distance" data-i18n-html="territorio.t6_dist">&rarr; 5 minuti in auto</span>
             </div>
             <div class="territorio-card fade-up">
                 <div class="territorio-icon">&#127958;</div>
-                <div class="territorio-card-tag">Mare &amp; Famiglie</div>
-                <h3>Porto Recanati</h3>
-                <p>Spiagge Bandiera Blu con fondali bassi, perfette per famiglie con bambini. Otto chilometri di costa attrezzata, stabilimenti balneari e il lungomare pi&ugrave; accogliente della Riviera del Conero.</p>
-                <span class="territorio-distance">&rarr; 30 minuti in auto</span>
+                <div class="territorio-card-tag" data-i18n="territorio.t7_tag">Mare &amp; Famiglie</div>
+                <h3 data-i18n="territorio.t7_title">Porto Recanati</h3>
+                <p data-i18n="territorio.t7_desc">Spiagge Bandiera Blu con fondali bassi, perfette per famiglie con bambini. Otto chilometri di costa attrezzata, stabilimenti balneari e il lungomare pi&ugrave; accogliente della Riviera del Conero.</p>
+                <span class="territorio-distance" data-i18n-html="territorio.t7_dist">&rarr; 30 minuti in auto</span>
             </div>
             <div class="territorio-card fade-up">
                 <div class="territorio-icon">&#127984;</div>
-                <div class="territorio-card-tag">Storia &amp; Architettura</div>
-                <h3>Castello di Montefiore</h3>
-                <p>Imponente fortezza del XV secolo con la sua alta torre di avvistamento al centro di un recinto circolare. Restaurato con fondi PNRR e inaugurato nel 2025, ospita mostre ed eventi culturali con vista mozzafiato sulle colline.</p>
-                <span class="territorio-distance">&rarr; 5 minuti in auto</span>
+                <div class="territorio-card-tag" data-i18n="territorio.t8_tag">Storia &amp; Architettura</div>
+                <h3 data-i18n="territorio.t8_title">Castello di Montefiore</h3>
+                <p data-i18n="territorio.t8_desc">Imponente fortezza del XV secolo con la sua alta torre di avvistamento al centro di un recinto circolare. Restaurato con fondi PNRR e inaugurato nel 2025, ospita mostre ed eventi culturali con vista mozzafiato sulle colline.</p>
+                <span class="territorio-distance" data-i18n-html="territorio.t8_dist">&rarr; 5 minuti in auto</span>
             </div>
             <div class="territorio-card fade-up">
                 <div class="territorio-icon">&#128142;</div>
-                <div class="territorio-card-tag">Meraviglia Sotterranea</div>
-                <h3>Grotte di Frasassi</h3>
-                <p>Uno dei complessi carsici pi&ugrave; grandi d'Europa, nel cuore del Parco della Gola della Rossa. Stalattiti, stalagmiti e sale immense scolpite dall'acqua in milioni di anni: un'esperienza indimenticabile per grandi e piccini.</p>
-                <span class="territorio-distance">&rarr; 75 minuti in auto</span>
+                <div class="territorio-card-tag" data-i18n="territorio.t9_tag">Meraviglia Sotterranea</div>
+                <h3 data-i18n="territorio.t9_title">Grotte di Frasassi</h3>
+                <p data-i18n="territorio.t9_desc">Uno dei complessi carsici pi&ugrave; grandi d'Europa, nel cuore del Parco della Gola della Rossa. Stalattiti, stalagmiti e sale immense scolpite dall'acqua in milioni di anni: un'esperienza indimenticabile per grandi e piccini.</p>
+                <span class="territorio-distance" data-i18n-html="territorio.t9_dist">&rarr; 75 minuti in auto</span>
             </div>
         </div>
     </section>
@@ -2087,23 +2148,23 @@
         <div class="services-row">
             <div class="service-badge fade-up">
                 <span class="service-badge-icon">&#127860;</span>
-                <span class="service-badge-text">Colazione inclusa</span>
+                <span class="service-badge-text" data-i18n="servizi.s1">Colazione inclusa</span>
             </div>
             <div class="service-badge fade-up">
                 <span class="service-badge-icon">&#128246;</span>
-                <span class="service-badge-text">Wi-Fi gratuito</span>
+                <span class="service-badge-text" data-i18n="servizi.s2">Wi-Fi gratuito</span>
             </div>
             <div class="service-badge fade-up">
                 <span class="service-badge-icon">&#128663;</span>
-                <span class="service-badge-text">Parcheggio libero</span>
+                <span class="service-badge-text" data-i18n="servizi.s3">Parcheggio libero</span>
             </div>
             <div class="service-badge fade-up">
                 <span class="service-badge-icon">&#10052;</span>
-                <span class="service-badge-text">Aria condizionata</span>
+                <span class="service-badge-text" data-i18n="servizi.s4">Aria condizionata</span>
             </div>
             <div class="service-badge fade-up">
                 <span class="service-badge-icon">&#128062;</span>
-                <span class="service-badge-text">Animali ammessi</span>
+                <span class="service-badge-text" data-i18n="servizi.s5">Animali ammessi</span>
             </div>
         </div>
     </div>
@@ -2111,8 +2172,8 @@
     <!-- Chi Siamo -->
     <section class="chi-siamo" id="chi-siamo">
         <div class="section-header">
-            <div class="section-label fade-up">La Nostra Storia</div>
-            <h2 class="section-title fade-up">Chi Siamo</h2>
+            <div class="section-label fade-up" data-i18n="chi_siamo.label">La Nostra Storia</div>
+            <h2 class="section-title fade-up" data-i18n="chi_siamo.title">Chi Siamo</h2>
         </div>
         <div class="chi-siamo-layout">
             <div class="chi-siamo-img fade-up">
@@ -2121,7 +2182,7 @@
                     <img src="interni-scala.jpeg" alt="Interni del Casale dell'Acquabona" loading="lazy">
                 </picture>
             </div>
-            <div class="chi-siamo-text fade-up">
+            <div class="chi-siamo-text fade-up" data-i18n-html="chi_siamo.text">
                 <p>
                     Il Casale dell'Acquabona &egrave; una struttura a conduzione familiare
                     immersa nelle colline verdi di Montefanovecchio. <strong>Marco e Celina</strong>
@@ -2142,26 +2203,26 @@
     <!-- Recensioni -->
     <section class="recensioni" id="recensioni">
         <div class="section-header">
-            <div class="section-label fade-up">Dicono di Noi</div>
-            <h2 class="section-title fade-up">Le Voci dei Nostri Ospiti</h2>
-            <p class="section-subtitle fade-up">Oltre 100 recensioni positive su Booking, TripAdvisor e Google</p>
+            <div class="section-label fade-up" data-i18n="recensioni.label">Dicono di Noi</div>
+            <h2 class="section-title fade-up" data-i18n="recensioni.title">Le Voci dei Nostri Ospiti</h2>
+            <p class="section-subtitle fade-up" data-i18n="recensioni.subtitle">Oltre 100 recensioni positive su Booking, TripAdvisor e Google</p>
         </div>
         <div class="recensioni-grid">
             <div class="review-card fade-up">
                 <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p class="review-text">&laquo;Posto incantevole, camere pulite e curate. Il cibo &egrave; eccezionale, porzioni generose e tutto genuino. Marco e Celina sono ospiti fantastici.&raquo;</p>
+                <p class="review-text" data-i18n="recensioni.r1_text">&laquo;Posto incantevole, camere pulite e curate. Il cibo &egrave; eccezionale, porzioni generose e tutto genuino. Marco e Celina sono ospiti fantastici.&raquo;</p>
                 <div class="review-author">Famiglia R.</div>
                 <div class="review-source">Booking.com</div>
             </div>
             <div class="review-card fade-up">
                 <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p class="review-text">&laquo;Agriturismo bellissimo, panorama mozzafiato sulle colline. Il cuoco &egrave; bravissimo, la cucina tradizionale marchigiana al suo meglio. Torneremo sicuramente!&raquo;</p>
+                <p class="review-text" data-i18n="recensioni.r2_text">&laquo;Agriturismo bellissimo, panorama mozzafiato sulle colline. Il cuoco &egrave; bravissimo, la cucina tradizionale marchigiana al suo meglio. Torneremo sicuramente!&raquo;</p>
                 <div class="review-author">Laura M.</div>
                 <div class="review-source">TripAdvisor</div>
             </div>
             <div class="review-card fade-up">
                 <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <p class="review-text">&laquo;Tranquillit&agrave; assoluta, accoglienza calorosa e un rapporto qualit&agrave;-prezzo eccellente. I cani del casale sono adorabili. Perfetto per staccare dalla routine.&raquo;</p>
+                <p class="review-text" data-i18n="recensioni.r3_text">&laquo;Tranquillit&agrave; assoluta, accoglienza calorosa e un rapporto qualit&agrave;-prezzo eccellente. I cani del casale sono adorabili. Perfetto per staccare dalla routine.&raquo;</p>
                 <div class="review-author">Andreas K.</div>
                 <div class="review-source">Google Reviews</div>
             </div>
@@ -2171,23 +2232,23 @@
     <!-- Contatti -->
     <section class="info" id="contatti">
         <div class="info-content">
-            <h2 class="fade-up">Vieni a Trovarci</h2>
+            <h2 class="fade-up" data-i18n="contatti.title">Vieni a Trovarci</h2>
             <div class="info-item fade-up">
-                <h4>Indirizzo</h4>
+                <h4 data-i18n="contatti.indirizzo_label">Indirizzo</h4>
                 <p><a href="https://www.google.com/maps/search/?api=1&query=43.40138,13.40432" target="_blank" rel="noopener noreferrer">Contrada Intriglione, 6<br>62010 Montefanovecchio (MC)<br>Marche, Italia</a></p>
             </div>
             <div class="info-item fade-up">
-                <h4>Contatti</h4>
+                <h4 data-i18n="contatti.contatti_label">Contatti</h4>
                 <p>
                     <a href="tel:+393386575725">+39 338 657 5725</a><br>
                     <a href="mailto:info@ilcasaledellacquabona.it">info@ilcasaledellacquabona.it</a>
                 </p>
             </div>
             <div class="info-item fade-up">
-                <h4>Check-in / Check-out</h4>
-                <p>Arrivo: 15:00 &ndash; 20:00<br>Partenza: entro le 11:00</p>
+                <h4 data-i18n="contatti.checkin_label">Check-in / Check-out</h4>
+                <p data-i18n-html="contatti.checkin_text">Arrivo: 15:00 &ndash; 20:00<br>Partenza: entro le 11:00</p>
             </div>
-            <button class="cta-btn fade-up" onclick="openModal('Richiesta Informazioni', 0)">Richiedi Informazioni</button>
+            <button class="cta-btn fade-up" onclick="openModal('Richiesta Informazioni', 0)" data-i18n="contatti.cta">Richiedi Informazioni</button>
         </div>
         <a href="https://www.google.com/maps/search/?api=1&query=43.40138,13.40432" target="_blank" rel="noopener noreferrer" class="map-container fade-up" style="display:block;">
             <iframe
@@ -2201,64 +2262,64 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">Casale dell'Acquabona</div>
+        <div class="footer-logo" data-i18n="footer.logo">Casale dell'Acquabona</div>
         <div class="footer-links">
-            <a href="#offerte">Offerte</a>
-            <a href="#camere">Camere</a>
-            <a href="#galleria">Galleria</a>
-            <a href="#ristorante">Ristorante</a>
-            <a href="#territorio">Territorio</a>
-            <a href="#chi-siamo">Chi Siamo</a>
-            <a href="#recensioni">Recensioni</a>
-            <a href="#contatti">Contatti</a>
+            <a href="#offerte" data-i18n="nav.offerte">Offerte</a>
+            <a href="#camere" data-i18n="nav.camere">Camere</a>
+            <a href="#galleria" data-i18n="nav.galleria">Galleria</a>
+            <a href="#ristorante" data-i18n="nav.ristorante">Ristorante</a>
+            <a href="#territorio" data-i18n="nav.territorio">Territorio</a>
+            <a href="#chi-siamo" data-i18n="nav.chi_siamo">Chi Siamo</a>
+            <a href="#recensioni" data-i18n="nav.recensioni">Recensioni</a>
+            <a href="#contatti" data-i18n="nav.contatti">Contatti</a>
         </div>
         <p class="footer-text">Contrada Intriglione, 6 &mdash; 62010 Montefanovecchio (MC) &mdash; P.IVA 01811530433</p>
-        <p class="footer-text" style="margin-top: 0.5rem;">&copy; 2026 Casale dell'Acquabona. Tutti i diritti riservati.</p>
+        <p class="footer-text" style="margin-top: 0.5rem;" data-i18n="footer.copyright">&copy; 2026 Casale dell'Acquabona. Tutti i diritti riservati.</p>
     </footer>
 
     <!-- Booking Modal -->
     <div class="modal" id="bookingModal">
         <div class="modal-content">
             <button class="close-modal" onclick="closeModal()" aria-label="Chiudi">&times;</button>
-            <h2 id="modalTitle">Prenota il tuo soggiorno</h2>
+            <h2 id="modalTitle" data-i18n="modal.title">Prenota il tuo soggiorno</h2>
             <form onsubmit="handleSubmit(event)">
                 <div class="form-group">
-                    <label>Tipo di Soggiorno</label>
+                    <label data-i18n="modal.tipo">Tipo di Soggiorno</label>
                     <input type="text" id="modalRoomType" readonly>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Check-in</label>
+                        <label data-i18n="modal.checkin">Check-in</label>
                         <input type="date" id="checkinDate" required>
                     </div>
                     <div class="form-group">
-                        <label>Check-out</label>
+                        <label data-i18n="modal.checkout">Check-out</label>
                         <input type="date" id="checkoutDate" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Nome</label>
+                        <label data-i18n="modal.nome">Nome</label>
                         <input type="text" id="guestName" required>
                     </div>
                     <div class="form-group">
-                        <label>Cognome</label>
+                        <label data-i18n="modal.cognome">Cognome</label>
                         <input type="text" id="guestSurname" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
+                    <label data-i18n="modal.email">Email</label>
                     <input type="email" id="guestEmail" required>
                 </div>
                 <div class="form-group">
-                    <label>Telefono</label>
+                    <label data-i18n="modal.telefono">Telefono</label>
                     <input type="tel" id="guestPhone" required>
                 </div>
                 <div class="form-group">
-                    <label>Note (opzionale)</label>
-                    <textarea id="guestNotes" rows="3" placeholder="Allergie, orario di arrivo, richieste speciali..."></textarea>
+                    <label data-i18n="modal.note">Note (opzionale)</label>
+                    <textarea id="guestNotes" rows="3" placeholder="Allergie, orario di arrivo, richieste speciali..." data-i18n-placeholder="modal.placeholder"></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Invia Richiesta</button>
+                <button type="submit" class="submit-btn" data-i18n="modal.submit">Invia Richiesta</button>
             </form>
         </div>
     </div>
@@ -2272,10 +2333,10 @@
 
     <!-- Sticky Booking Bar -->
     <div class="booking-bar" id="bookingBar">
-        <span class="booking-bar-text">
+        <span class="booking-bar-text" data-i18n-html="booking.text">
             <strong>Casale dell'Acquabona</strong> &mdash; Prenota direttamente e risparmia sulle commissioni OTA
         </span>
-        <button class="booking-bar-cta" onclick="openModal('Richiesta Prenotazione', 0)">
+        <button class="booking-bar-cta" onclick="openModal('Richiesta Prenotazione', 0)" data-i18n-html="booking.cta">
             &#9742; Prenota Diretto
         </button>
     </div>
@@ -2283,12 +2344,11 @@
     <!-- Cookie Banner GDPR -->
     <div class="cookie-banner" id="cookieBanner">
         <p>
-            Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il traffico del sito.
-            Continuando, accetti la nostra <a href="#" onclick="return false;">cookie policy</a>.
+            <span data-i18n-html="cookie.full_text">Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il traffico del sito. Continuando, accetti la nostra <a href="#" onclick="return false;">cookie policy</a>.</span>
         </p>
         <div class="cookie-buttons">
-            <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Accetta</button>
-            <button class="cookie-btn cookie-btn-reject" onclick="rejectCookies()">Rifiuta</button>
+            <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()" data-i18n="cookie.accept">Accetta</button>
+            <button class="cookie-btn cookie-btn-reject" onclick="rejectCookies()" data-i18n="cookie.reject">Rifiuta</button>
         </div>
     </div>
 
@@ -2369,7 +2429,8 @@
 
         // ===== Modal =====
         function openModal(roomType, price) {
-            var display = price > 0 ? roomType + ' \u2014 da \u20AC' + price : roomType;
+            var prefix = currentLang === 'de' ? ' \u2014 ab \u20AC' : currentLang === 'en' ? ' \u2014 from \u20AC' : ' \u2014 da \u20AC';
+            var display = price > 0 ? roomType + prefix + price : roomType;
             document.getElementById('modalRoomType').value = display;
             document.getElementById('bookingModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -2400,18 +2461,19 @@
             var notes = document.getElementById('guestNotes').value;
 
             // Build WhatsApp / mailto message
-            var message = 'Salve, vorrei prenotare: ' + roomType +
-                '\nNome: ' + name + ' ' + surname +
-                '\nEmail: ' + email +
-                '\nTelefono: ' + phone +
-                '\nCheck-in: ' + checkin +
-                '\nCheck-out: ' + checkout;
+            var t = translations[currentLang].email;
+            var message = t.greeting + roomType +
+                t.name_label + name + ' ' + surname +
+                t.email_label + email +
+                t.phone_label + phone +
+                t.checkin_label + checkin +
+                t.checkout_label + checkout;
             if (notes) {
-                message += '\nNote: ' + notes;
+                message += t.notes_label + notes;
             }
 
             var mailtoLink = 'mailto:marcocapodacqua@hotmail.it?subject=' +
-                encodeURIComponent('Richiesta prenotazione - ' + roomType) +
+                encodeURIComponent(t.subject + roomType) +
                 '&body=' + encodeURIComponent(message);
 
             window.location.href = mailtoLink;
@@ -2505,6 +2567,7 @@
         });
 
         // ===== Lightbox Gallery =====
+        var galleryData = [];
         (function() {
             var lightbox = document.getElementById('lightbox');
             var lightboxImg = document.getElementById('lightboxImg');
@@ -2513,7 +2576,7 @@
             var currentIndex = 0;
 
             // Build gallery data from items
-            var galleryData = [];
+            galleryData = [];
             galleryItems.forEach(function(item) {
                 var img = item.querySelector('img');
                 var label = item.querySelector('.gallery-label');
@@ -2586,6 +2649,682 @@
                 if (e.key === 'ArrowRight') { nextImage(); }
                 if (e.key === 'ArrowLeft') { prevImage(); }
             });
+        })();
+
+        // ===== MULTI-LANGUAGE SYSTEM (IT/EN/DE) =====
+        var currentLang = 'it';
+
+        var translations = {
+            it: {
+                // Nav
+                nav: {
+                    offerte: 'Offerte',
+                    camere: 'Camere',
+                    galleria: 'Galleria',
+                    ristorante: 'Ristorante',
+                    territorio: 'Territorio',
+                    chi_siamo: 'Chi Siamo',
+                    recensioni: 'Recensioni',
+                    contatti: 'Contatti'
+                },
+                // Hero
+                hero: {
+                    subtitle: 'Agriturismo di Charme \u2014 Montefano',
+                    title: 'Casale<br>dell\u2019Acquabona',
+                    desc: 'Un\u2019oasi di pace immersa nelle colline marchigiane, tra il profumo della campagna e la brezza del mare Adriatico.',
+                    cta_book: '&#9742; Prenota Ora',
+                    cta_rooms: 'Scopri le Camere',
+                    scroll: 'Scorri'
+                },
+                // Offerte
+                offerte: {
+                    label: 'Esperienze Esclusive',
+                    title: 'Le Nostre Offerte',
+                    subtitle: 'Pacchetti pensati per farvi vivere le Marche nel modo migliore',
+                    o1_title: 'Weekend Romantico',
+                    o1_desc: '2 notti per 2 persone con colazione contadina, cena romantica a lume di candela e bottiglia di Rosso Conero.',
+                    o1_price: '&euro;290 <span>/ coppia</span>',
+                    o2_title: 'Settimana Relax',
+                    o2_desc: '7 notti con colazione bio, una cena inclusa, accesso al giardino con vista colline e late check-out.',
+                    o2_price: '&euro;750 <span>/ coppia</span>',
+                    o3_title: 'Esperienza Natura',
+                    o3_desc: '3 notti con trekking guidato nei Sibillini, degustazione vini e pranzo con prodotti a km zero.',
+                    o3_price: '&euro;480 <span>/ coppia</span>'
+                },
+                // Camere
+                camere: {
+                    label: 'Ospitalit\u00e0',
+                    title: 'Le Nostre Camere',
+                    subtitle: 'Travi a vista, letti in ferro battuto e il silenzio della campagna marchigiana',
+                    r1_name: 'Camera Matrimoniale',
+                    r1_f1: 'Letto Ferro Battuto',
+                    r1_f2: 'Travi a Vista',
+                    r1_f3: 'Climatizzata',
+                    r1_price: 'da &euro;90 <span>/ notte</span>',
+                    r2_name: 'Camera Superior',
+                    r2_f1: 'Lucernario',
+                    r2_f2: 'Vista Colline',
+                    r2_f3: 'Bagno Privato',
+                    r2_price: 'da &euro;110 <span>/ notte</span>',
+                    r3_name: 'Camera Familiare',
+                    r3_f1: 'Spaziosa',
+                    r3_f2: 'Letto Extra',
+                    r3_f3: 'Travi a Vista',
+                    r3_price: 'da &euro;130 <span>/ notte</span>'
+                },
+                // Panorama
+                panorama: {
+                    title: 'Il panorama che vi aspetta',
+                    subtitle: 'Le colline marchigiane viste dal Casale'
+                },
+                // Galleria
+                galleria: {
+                    label: 'Scopri il Casale',
+                    title: 'Galleria',
+                    l1: 'Il Casale al Tramonto',
+                    l2: 'Il Panorama',
+                    l3: 'Gli Interni',
+                    l4: 'Le Camere',
+                    l5: 'I Bagni'
+                },
+                // Ristorante
+                ristorante: {
+                    label: 'Gastronomia',
+                    title: '\u00abSi mangia quello che c\u2019\u00e8!\u00bb',
+                    desc: 'Il nostro motto racconta tutto: al Casale la cucina \u00e8 autentica, semplice e preparata con amore. Ingredienti coltivati nel nostro orto, carni dall\u2019allevamento aziendale, formaggi di pecora e vini DOC selezionati. Nessun menu fisso: ogni giorno la tavola si riempie di quello che la terra e la stagione offrono.',
+                    h1_title: 'Km Zero',
+                    h1_desc: 'Prodotti dal nostro orto',
+                    h2_title: 'Vini DOC',
+                    h2_desc: 'Selezione marchigiana',
+                    h3_title: 'Colazione',
+                    h4_title: 'Cena'
+                },
+                // Territorio
+                territorio: {
+                    label: 'Esplora le Marche',
+                    title: 'Il Territorio',
+                    subtitle: 'Tra arte, mare e montagna: tutto a portata di mano dal Casale',
+                    t1_tag: 'Cultura &amp; Poesia',
+                    t1_title: 'Recanati',
+                    t1_desc: 'La citt\u00e0 di Giacomo Leopardi e il celebre Colle dell\u2019Infinito. Visitate Casa Leopardi, il Museo Beniamino Gigli e perdetevi tra i vicoli del borgo con panorami mozzafiato.',
+                    t1_dist: '&rarr; 20 minuti in auto',
+                    t2_tag: 'Mare &amp; Spiagge',
+                    t2_title: 'Riviera del Conero',
+                    t2_desc: 'Spiagge Bandiera Blu, calette tra falesie bianche e acque cristalline. Sirolo, Numana e Portonovo: il paradiso dell\u2019Adriatico per le vostre estati.',
+                    t2_dist: '&rarr; 30 minuti in auto',
+                    t3_tag: 'Fede &amp; Storia',
+                    t3_title: 'Loreto',
+                    t3_desc: 'Il Santuario della Santa Casa, meta di pellegrinaggio da tutto il mondo. Una basilica maestosa nel cuore delle colline marchigiane.',
+                    t3_dist: '&rarr; 25 minuti in auto',
+                    t4_tag: 'Arte &amp; Spettacolo',
+                    t4_title: 'Macerata',
+                    t4_desc: 'Lo Sferisterio, teatro all\u2019aperto che ogni estate ospita il Macerata Opera Festival. Centro storico universitario elegante e vivace.',
+                    t4_dist: '&rarr; 15 minuti in auto',
+                    t5_tag: 'Natura &amp; Avventura',
+                    t5_title: 'Monti Sibillini',
+                    t5_desc: 'Parco Nazionale: trekking, Lago di Fiastra, Gola dell\u2019Infernaccio e la leggendaria fioritura di Castelluccio. Natura incontaminata.',
+                    t5_dist: '&rarr; 60 minuti in auto',
+                    t6_tag: 'Il Nostro Borgo',
+                    t6_title: 'Montefano',
+                    t6_desc: 'Borgo medievale con il grazioso Teatro La Rondinella (1887), gioiello \u00abbomboniera\u00bb da 150 posti progettato dal direttore tecnico del Teatro La Fenice di Venezia. Qui nacque nel 1501 Papa Marcello II, l\u2019ultimo pontefice a usare il proprio nome.',
+                    t6_dist: '&rarr; 5 minuti in auto',
+                    t7_tag: 'Mare &amp; Famiglie',
+                    t7_title: 'Porto Recanati',
+                    t7_desc: 'Spiagge Bandiera Blu con fondali bassi, perfette per famiglie con bambini. Otto chilometri di costa attrezzata, stabilimenti balneari e il lungomare pi\u00f9 accogliente della Riviera del Conero.',
+                    t7_dist: '&rarr; 30 minuti in auto',
+                    t8_tag: 'Storia &amp; Architettura',
+                    t8_title: 'Castello di Montefiore',
+                    t8_desc: 'Imponente fortezza del XV secolo con la sua alta torre di avvistamento al centro di un recinto circolare. Restaurato con fondi PNRR e inaugurato nel 2025, ospita mostre ed eventi culturali con vista mozzafiato sulle colline.',
+                    t8_dist: '&rarr; 5 minuti in auto',
+                    t9_tag: 'Meraviglia Sotterranea',
+                    t9_title: 'Grotte di Frasassi',
+                    t9_desc: 'Uno dei complessi carsici pi\u00f9 grandi d\u2019Europa, nel cuore del Parco della Gola della Rossa. Stalattiti, stalagmiti e sale immense scolpite dall\u2019acqua in milioni di anni: un\u2019esperienza indimenticabile per grandi e piccini.',
+                    t9_dist: '&rarr; 75 minuti in auto'
+                },
+                // Servizi
+                servizi: {
+                    s1: 'Colazione inclusa',
+                    s2: 'Wi-Fi gratuito',
+                    s3: 'Parcheggio libero',
+                    s4: 'Aria condizionata',
+                    s5: 'Animali ammessi'
+                },
+                // Chi Siamo
+                chi_siamo: {
+                    label: 'La Nostra Storia',
+                    title: 'Chi Siamo',
+                    text: '<p>Il Casale dell\u2019Acquabona \u00e8 una struttura a conduzione familiare immersa nelle colline verdi di Montefanovecchio. <strong>Marco e Celina</strong> vi accoglieranno con la genuina ospitalit\u00e0 marchigiana, insieme ai loro inseparabili collie <strong>Astro e Luna</strong>.</p><div class="motto">\u00abQui i ritmi li detta la natura, non l\u2019orologio.\u00bb</div><p>Cinque camere arredate con cura e semplicit\u00e0, una cucina che racconta le tradizioni di questa terra e un panorama che toglie il fiato: questo \u00e8 il Casale. Un luogo dove rallentare, respirare e riscoprire il piacere delle cose autentiche.</p>'
+                },
+                // Recensioni
+                recensioni: {
+                    label: 'Dicono di Noi',
+                    title: 'Le Voci dei Nostri Ospiti',
+                    subtitle: 'Oltre 100 recensioni positive su Booking, TripAdvisor e Google',
+                    r1_text: '\u00abPosto incantevole, camere pulite e curate. Il cibo \u00e8 eccezionale, porzioni generose e tutto genuino. Marco e Celina sono ospiti fantastici.\u00bb',
+                    r2_text: '\u00abAgriturismo bellissimo, panorama mozzafiato sulle colline. Il cuoco \u00e8 bravissimo, la cucina tradizionale marchigiana al suo meglio. Torneremo sicuramente!\u00bb',
+                    r3_text: '\u00abTranquillit\u00e0 assoluta, accoglienza calorosa e un rapporto qualit\u00e0-prezzo eccellente. I cani del casale sono adorabili. Perfetto per staccare dalla routine.\u00bb'
+                },
+                // Contatti
+                contatti: {
+                    title: 'Vieni a Trovarci',
+                    indirizzo_label: 'Indirizzo',
+                    contatti_label: 'Contatti',
+                    checkin_label: 'Check-in / Check-out',
+                    checkin_text: 'Arrivo: 15:00 &ndash; 20:00<br>Partenza: entro le 11:00',
+                    cta: 'Richiedi Informazioni'
+                },
+                // Footer
+                footer: {
+                    logo: 'Casale dell\u2019Acquabona',
+                    copyright: '\u00a9 2026 Casale dell\u2019Acquabona. Tutti i diritti riservati.'
+                },
+                // Modal
+                modal: {
+                    title: 'Prenota il tuo soggiorno',
+                    tipo: 'Tipo di Soggiorno',
+                    checkin: 'Check-in',
+                    checkout: 'Check-out',
+                    nome: 'Nome',
+                    cognome: 'Cognome',
+                    email: 'Email',
+                    telefono: 'Telefono',
+                    note: 'Note (opzionale)',
+                    placeholder: 'Allergie, orario di arrivo, richieste speciali...',
+                    submit: 'Invia Richiesta'
+                },
+                // Booking bar
+                booking: {
+                    text: '<strong>Casale dell\u2019Acquabona</strong> &mdash; Prenota direttamente e risparmia sulle commissioni OTA',
+                    cta: '&#9742; Prenota Diretto'
+                },
+                // Cookie
+                cookie: {
+                    full_text: 'Utilizziamo i cookie per migliorare la tua esperienza di navigazione e analizzare il traffico del sito. Continuando, accetti la nostra <a href="#" onclick="return false;">cookie policy</a>.',
+                    accept: 'Accetta',
+                    reject: 'Rifiuta'
+                },
+                // Email (used by handleSubmit)
+                email: {
+                    greeting: 'Salve, vorrei prenotare: ',
+                    name_label: '\nNome: ',
+                    email_label: '\nEmail: ',
+                    phone_label: '\nTelefono: ',
+                    checkin_label: '\nCheck-in: ',
+                    checkout_label: '\nCheck-out: ',
+                    notes_label: '\nNote: ',
+                    subject: 'Richiesta prenotazione - '
+                },
+                // Meta
+                meta: {
+                    title: 'Casale dell\u2019Acquabona | Agriturismo a Montefano, Marche',
+                    description: 'Casale dell\u2019Acquabona: agriturismo di charme nelle colline di Montefano (MC). Camere con travi a vista, cucina marchigiana, a 20 min dal mare e da Recanati.'
+                }
+            },
+
+            en: {
+                nav: {
+                    offerte: 'Offers',
+                    camere: 'Rooms',
+                    galleria: 'Gallery',
+                    ristorante: 'Restaurant',
+                    territorio: 'Surroundings',
+                    chi_siamo: 'About Us',
+                    recensioni: 'Reviews',
+                    contatti: 'Contact'
+                },
+                hero: {
+                    subtitle: 'Charming Farmhouse \u2014 Montefano',
+                    title: 'Casale<br>dell\u2019Acquabona',
+                    desc: 'A peaceful oasis nestled in the hills of Le Marche, where the scent of the countryside meets the Adriatic sea breeze.',
+                    cta_book: '&#9742; Book Now',
+                    cta_rooms: 'Discover Our Rooms',
+                    scroll: 'Scroll'
+                },
+                offerte: {
+                    label: 'Exclusive Experiences',
+                    title: 'Our Packages',
+                    subtitle: 'Curated stays designed to let you experience the best of Le Marche',
+                    o1_title: 'Romantic Weekend',
+                    o1_desc: '2 nights for 2 guests with farmhouse breakfast, candlelit dinner and a bottle of Rosso Conero wine.',
+                    o1_price: '&euro;290 <span>/ couple</span>',
+                    o2_title: 'Relaxing Week',
+                    o2_desc: '7 nights with organic breakfast, one dinner included, garden access with hill views and late check-out.',
+                    o2_price: '&euro;750 <span>/ couple</span>',
+                    o3_title: 'Nature Experience',
+                    o3_desc: '3 nights with guided trekking in the Sibillini Mountains, wine tasting and a farm-to-table lunch.',
+                    o3_price: '&euro;480 <span>/ couple</span>'
+                },
+                camere: {
+                    label: 'Hospitality',
+                    title: 'Our Rooms',
+                    subtitle: 'Exposed beams, wrought-iron beds and the silence of the Marche countryside',
+                    r1_name: 'Double Room',
+                    r1_f1: 'Wrought-Iron Bed',
+                    r1_f2: 'Exposed Beams',
+                    r1_f3: 'Air Conditioned',
+                    r1_price: 'from &euro;90 <span>/ night</span>',
+                    r2_name: 'Superior Room',
+                    r2_f1: 'Skylight',
+                    r2_f2: 'Hill Views',
+                    r2_f3: 'Private Bathroom',
+                    r2_price: 'from &euro;110 <span>/ night</span>',
+                    r3_name: 'Family Room',
+                    r3_f1: 'Spacious',
+                    r3_f2: 'Extra Bed',
+                    r3_f3: 'Exposed Beams',
+                    r3_price: 'from &euro;130 <span>/ night</span>'
+                },
+                panorama: {
+                    title: 'The view that awaits you',
+                    subtitle: 'The hills of Le Marche seen from the Casale'
+                },
+                galleria: {
+                    label: 'Discover the Casale',
+                    title: 'Gallery',
+                    l1: 'The Casale at Sunset',
+                    l2: 'The Panorama',
+                    l3: 'The Interiors',
+                    l4: 'The Rooms',
+                    l5: 'The Bathrooms'
+                },
+                ristorante: {
+                    label: 'Gastronomy',
+                    title: '\u00abYou eat what there is!\u00bb',
+                    desc: 'Our motto says it all: at the Casale, the cuisine is authentic, simple and made with love. Ingredients grown in our garden, meats from our own farm, sheep cheese and selected DOC wines. No fixed menu: every day the table is filled with what the land and the season have to offer.',
+                    h1_title: 'Farm Fresh',
+                    h1_desc: 'From our own garden',
+                    h2_title: 'DOC Wines',
+                    h2_desc: 'Local Marche selection',
+                    h3_title: 'Breakfast',
+                    h4_title: 'Dinner'
+                },
+                territorio: {
+                    label: 'Explore Le Marche',
+                    title: 'The Surroundings',
+                    subtitle: 'Art, sea and mountains: everything within easy reach from the Casale',
+                    t1_tag: 'Culture &amp; Poetry',
+                    t1_title: 'Recanati',
+                    t1_desc: 'The hometown of poet Giacomo Leopardi and the famous Hill of the Infinite. Visit Casa Leopardi, the Beniamino Gigli Museum and lose yourself in the charming old town with breathtaking views.',
+                    t1_dist: '&rarr; 20 minutes by car',
+                    t2_tag: 'Sea &amp; Beaches',
+                    t2_title: 'Conero Riviera',
+                    t2_desc: 'Blue Flag beaches, hidden coves between white cliffs and crystal-clear waters. Sirolo, Numana and Portonovo: the Adriatic paradise for your summers.',
+                    t2_dist: '&rarr; 30 minutes by car',
+                    t3_tag: 'Faith &amp; History',
+                    t3_title: 'Loreto',
+                    t3_desc: 'The Sanctuary of the Holy House, a pilgrimage destination from around the world. A majestic basilica in the heart of the Marche hills.',
+                    t3_dist: '&rarr; 25 minutes by car',
+                    t4_tag: 'Art &amp; Performance',
+                    t4_title: 'Macerata',
+                    t4_desc: 'The Sferisterio, an open-air theatre hosting the Macerata Opera Festival every summer. An elegant and lively historic university town.',
+                    t4_dist: '&rarr; 15 minutes by car',
+                    t5_tag: 'Nature &amp; Adventure',
+                    t5_title: 'Sibillini Mountains',
+                    t5_desc: 'National Park: hiking, Lake Fiastra, the Infernaccio Gorge and the legendary wildflower blooming of Castelluccio. Unspoilt nature.',
+                    t5_dist: '&rarr; 60 minutes by car',
+                    t6_tag: 'Our Village',
+                    t6_title: 'Montefano',
+                    t6_desc: 'A medieval hamlet home to the charming Teatro La Rondinella (1887), a \u201cbonbonni\u00e8re\u201d jewel with 150 seats designed by the technical director of Venice\u2019s La Fenice Theatre. Pope Marcellus II was born here in 1501, the last pope to use his own name.',
+                    t6_dist: '&rarr; 5 minutes by car',
+                    t7_tag: 'Sea &amp; Families',
+                    t7_title: 'Porto Recanati',
+                    t7_desc: 'Blue Flag beaches with shallow waters, perfect for families with children. Eight kilometres of equipped coastline, beach clubs and the most welcoming promenade on the Conero Riviera.',
+                    t7_dist: '&rarr; 30 minutes by car',
+                    t8_tag: 'History &amp; Architecture',
+                    t8_title: 'Montefiore Castle',
+                    t8_desc: 'An imposing 15th-century fortress with a tall watchtower at the centre of a circular enclosure. Restored with PNRR funds and reopened in 2025, it hosts exhibitions and cultural events with stunning hill views.',
+                    t8_dist: '&rarr; 5 minutes by car',
+                    t9_tag: 'Underground Wonder',
+                    t9_title: 'Frasassi Caves',
+                    t9_desc: 'One of the largest cave systems in Europe, in the heart of the Gola della Rossa Park. Stalactites, stalagmites and immense chambers carved by water over millions of years: an unforgettable experience for all ages.',
+                    t9_dist: '&rarr; 75 minutes by car'
+                },
+                servizi: {
+                    s1: 'Breakfast included',
+                    s2: 'Free Wi-Fi',
+                    s3: 'Free parking',
+                    s4: 'Air conditioning',
+                    s5: 'Pets welcome'
+                },
+                chi_siamo: {
+                    label: 'Our Story',
+                    title: 'About Us',
+                    text: '<p>Casale dell\u2019Acquabona is a family-run farmhouse nestled in the green hills of Montefanovecchio. <strong>Marco and Celina</strong> will welcome you with genuine Marche hospitality, together with their inseparable collies <strong>Astro and Luna</strong>.</p><div class="motto">\u00abHere, nature sets the pace \u2014 not the clock.\u00bb</div><p>Five rooms furnished with care and simplicity, a kitchen that tells the story of this land and a panorama that takes your breath away: this is the Casale. A place to slow down, breathe and rediscover the joy of authentic living.</p>'
+                },
+                recensioni: {
+                    label: 'Guest Reviews',
+                    title: 'What Our Guests Say',
+                    subtitle: 'Over 100 positive reviews on Booking, TripAdvisor and Google',
+                    r1_text: '\u00abEnchanting place, clean and well-kept rooms. The food is exceptional, generous portions and everything is genuine. Marco and Celina are wonderful hosts.\u00bb',
+                    r2_text: '\u00abBeautiful agriturismo, breathtaking views over the hills. The chef is outstanding, traditional Marche cuisine at its finest. We\u2019ll definitely be back!\u00bb',
+                    r3_text: '\u00abAbsolute tranquillity, warm welcome and excellent value for money. The farmhouse dogs are adorable. Perfect for disconnecting from the daily routine.\u00bb'
+                },
+                contatti: {
+                    title: 'Come Visit Us',
+                    indirizzo_label: 'Address',
+                    contatti_label: 'Contact',
+                    checkin_label: 'Check-in / Check-out',
+                    checkin_text: 'Arrival: 3:00 PM &ndash; 8:00 PM<br>Departure: by 11:00 AM',
+                    cta: 'Request Information'
+                },
+                footer: {
+                    logo: 'Casale dell\u2019Acquabona',
+                    copyright: '\u00a9 2026 Casale dell\u2019Acquabona. All rights reserved.'
+                },
+                modal: {
+                    title: 'Book Your Stay',
+                    tipo: 'Type of Stay',
+                    checkin: 'Check-in',
+                    checkout: 'Check-out',
+                    nome: 'First Name',
+                    cognome: 'Last Name',
+                    email: 'Email',
+                    telefono: 'Phone',
+                    note: 'Notes (optional)',
+                    placeholder: 'Allergies, arrival time, special requests...',
+                    submit: 'Send Request'
+                },
+                booking: {
+                    text: '<strong>Casale dell\u2019Acquabona</strong> &mdash; Book directly and save on OTA commissions',
+                    cta: '&#9742; Book Direct'
+                },
+                cookie: {
+                    full_text: 'We use cookies to improve your browsing experience and analyse site traffic. By continuing, you accept our <a href="#" onclick="return false;">cookie policy</a>.',
+                    accept: 'Accept',
+                    reject: 'Decline'
+                },
+                email: {
+                    greeting: 'Hello, I would like to book: ',
+                    name_label: '\nName: ',
+                    email_label: '\nEmail: ',
+                    phone_label: '\nPhone: ',
+                    checkin_label: '\nCheck-in: ',
+                    checkout_label: '\nCheck-out: ',
+                    notes_label: '\nNotes: ',
+                    subject: 'Booking request - '
+                },
+                meta: {
+                    title: 'Casale dell\u2019Acquabona | Farmhouse in Montefano, Le Marche',
+                    description: 'Casale dell\u2019Acquabona: charming farmhouse in the hills of Montefano (MC). Rooms with exposed beams, traditional Marche cuisine, 20 min from the sea and Recanati.'
+                }
+            },
+
+            de: {
+                nav: {
+                    offerte: 'Angebote',
+                    camere: 'Zimmer',
+                    galleria: 'Galerie',
+                    ristorante: 'Restaurant',
+                    territorio: 'Umgebung',
+                    chi_siamo: '\u00dcber Uns',
+                    recensioni: 'Bewertungen',
+                    contatti: 'Kontakt'
+                },
+                hero: {
+                    subtitle: 'Charmantes Landgut \u2014 Montefano',
+                    title: 'Casale<br>dell\u2019Acquabona',
+                    desc: 'Eine Oase der Ruhe inmitten der H\u00fcgel der Marken, wo der Duft der Landschaft auf die Brise der Adria trifft.',
+                    cta_book: '&#9742; Jetzt Buchen',
+                    cta_rooms: 'Unsere Zimmer entdecken',
+                    scroll: 'Scrollen'
+                },
+                offerte: {
+                    label: 'Exklusive Erlebnisse',
+                    title: 'Unsere Angebote',
+                    subtitle: 'Pakete, die Ihnen das Beste der Marken n\u00e4herbringen',
+                    o1_title: 'Romantisches Wochenende',
+                    o1_desc: '2 N\u00e4chte f\u00fcr 2 Personen mit Bauernfr\u00fchst\u00fcck, romantischem Abendessen bei Kerzenschein und einer Flasche Rosso Conero.',
+                    o1_price: '&euro;290 <span>/ Paar</span>',
+                    o2_title: 'Entspannungswoche',
+                    o2_desc: '7 N\u00e4chte mit Bio-Fr\u00fchst\u00fcck, ein Abendessen inklusive, Zugang zum Garten mit H\u00fcgelblick und sp\u00e4ter Abreise.',
+                    o2_price: '&euro;750 <span>/ Paar</span>',
+                    o3_title: 'Naturerlebnis',
+                    o3_desc: '3 N\u00e4chte mit gef\u00fchrter Wanderung in den Sibillini-Bergen, Weinverkostung und einem Mittagessen mit Produkten vom Hof.',
+                    o3_price: '&euro;480 <span>/ Paar</span>'
+                },
+                camere: {
+                    label: 'Gastfreundschaft',
+                    title: 'Unsere Zimmer',
+                    subtitle: 'Sichtbare Deckenbalken, schmiedeeiserne Betten und die Stille der Landschaft der Marken',
+                    r1_name: 'Doppelzimmer',
+                    r1_f1: 'Schmiedeeisernes Bett',
+                    r1_f2: 'Sichtbalken',
+                    r1_f3: 'Klimaanlage',
+                    r1_price: 'ab &euro;90 <span>/ Nacht</span>',
+                    r2_name: 'Superior-Zimmer',
+                    r2_f1: 'Dachfenster',
+                    r2_f2: 'H\u00fcgelblick',
+                    r2_f3: 'Eigenes Bad',
+                    r2_price: 'ab &euro;110 <span>/ Nacht</span>',
+                    r3_name: 'Familienzimmer',
+                    r3_f1: 'Ger\u00e4umig',
+                    r3_f2: 'Zustellbett',
+                    r3_f3: 'Sichtbalken',
+                    r3_price: 'ab &euro;130 <span>/ Nacht</span>'
+                },
+                panorama: {
+                    title: 'Das Panorama, das Sie erwartet',
+                    subtitle: 'Die H\u00fcgel der Marken vom Casale aus gesehen'
+                },
+                galleria: {
+                    label: 'Das Casale entdecken',
+                    title: 'Galerie',
+                    l1: 'Das Casale bei Sonnenuntergang',
+                    l2: 'Das Panorama',
+                    l3: 'Die Innenr\u00e4ume',
+                    l4: 'Die Zimmer',
+                    l5: 'Die Badezimmer'
+                },
+                ristorante: {
+                    label: 'Gastronomie',
+                    title: '\u00abMan isst, was da ist!\u00bb',
+                    desc: 'Unser Motto sagt alles: Im Casale ist die K\u00fcche authentisch, schlicht und mit Liebe zubereitet. Zutaten aus unserem eigenen Garten, Fleisch aus eigener Aufzucht, Schafsek\u00e4se und ausgew\u00e4hlte DOC-Weine. Kein festes Men\u00fc: Jeden Tag wird der Tisch mit dem gedeckt, was Land und Jahreszeit hergeben.',
+                    h1_title: 'Km Null',
+                    h1_desc: 'Produkte aus unserem Garten',
+                    h2_title: 'DOC-Weine',
+                    h2_desc: 'Auswahl aus den Marken',
+                    h3_title: 'Fr\u00fchst\u00fcck',
+                    h4_title: 'Abendessen'
+                },
+                territorio: {
+                    label: 'Die Marken entdecken',
+                    title: 'Die Umgebung',
+                    subtitle: 'Kunst, Meer und Berge: alles vom Casale aus leicht erreichbar',
+                    t1_tag: 'Kultur &amp; Poesie',
+                    t1_title: 'Recanati',
+                    t1_desc: 'Die Heimatstadt des Dichters Giacomo Leopardi und der ber\u00fchmte H\u00fcgel der Unendlichkeit. Besuchen Sie die Casa Leopardi, das Museum Beniamino Gigli und verlieren Sie sich in den Gassen des Ortes mit atemberaubenden Aussichten.',
+                    t1_dist: '&rarr; 20 Minuten mit dem Auto',
+                    t2_tag: 'Meer &amp; Str\u00e4nde',
+                    t2_title: 'Conero-Riviera',
+                    t2_desc: 'Blaue-Flagge-Str\u00e4nde, versteckte Buchten zwischen wei\u00dfen Klippen und kristallklares Wasser. Sirolo, Numana und Portonovo: das Adria-Paradies f\u00fcr Ihre Sommer.',
+                    t2_dist: '&rarr; 30 Minuten mit dem Auto',
+                    t3_tag: 'Glaube &amp; Geschichte',
+                    t3_title: 'Loreto',
+                    t3_desc: 'Das Heiligtum des Heiligen Hauses, Wallfahrtsort aus aller Welt. Eine majest\u00e4tische Basilika im Herzen der H\u00fcgel der Marken.',
+                    t3_dist: '&rarr; 25 Minuten mit dem Auto',
+                    t4_tag: 'Kunst &amp; Schauspiel',
+                    t4_title: 'Macerata',
+                    t4_desc: 'Das Sferisterio, ein Freilufttheater, das jeden Sommer das Opernfestival von Macerata beherbergt. Eine elegante und lebendige Universit\u00e4tsstadt.',
+                    t4_dist: '&rarr; 15 Minuten mit dem Auto',
+                    t5_tag: 'Natur &amp; Abenteuer',
+                    t5_title: 'Sibillini-Berge',
+                    t5_desc: 'Nationalpark: Wandern, Fiastra-See, Infernaccio-Schlucht und die legend\u00e4re Bl\u00fcte von Castelluccio. Unber\u00fchrte Natur.',
+                    t5_dist: '&rarr; 60 Minuten mit dem Auto',
+                    t6_tag: 'Unser Dorf',
+                    t6_title: 'Montefano',
+                    t6_desc: 'Mittelalterliches Dorf mit dem reizvollen Teatro La Rondinella (1887), einem \u00abBonbonniere\u00bb-Juwel mit 150 Pl\u00e4tzen, entworfen vom technischen Direktor des Teatro La Fenice in Venedig. Hier wurde 1501 Papst Marcellus II. geboren, der letzte Papst, der seinen eigenen Namen beibehielt.',
+                    t6_dist: '&rarr; 5 Minuten mit dem Auto',
+                    t7_tag: 'Meer &amp; Familien',
+                    t7_title: 'Porto Recanati',
+                    t7_desc: 'Blaue-Flagge-Str\u00e4nde mit flachem Wasser, ideal f\u00fcr Familien mit Kindern. Acht Kilometer ausgestattete K\u00fcste, Strandb\u00e4der und die gem\u00fctlichste Strandpromenade der Conero-Riviera.',
+                    t7_dist: '&rarr; 30 Minuten mit dem Auto',
+                    t8_tag: 'Geschichte &amp; Architektur',
+                    t8_title: 'Burg Montefiore',
+                    t8_desc: 'Eine imposante Festung aus dem 15. Jahrhundert mit einem hohen Wachturm im Zentrum einer kreisf\u00f6rmigen Ummauerung. Mit PNRR-Mitteln restauriert und 2025 wiederer\u00f6ffnet, beherbergt sie Ausstellungen und kulturelle Veranstaltungen mit atemberaubendem H\u00fcgelblick.',
+                    t8_dist: '&rarr; 5 Minuten mit dem Auto',
+                    t9_tag: 'Unterirdisches Wunder',
+                    t9_title: 'Frasassi-H\u00f6hlen',
+                    t9_desc: 'Eines der gr\u00f6\u00dften H\u00f6hlensysteme Europas im Herzen des Parks der Gola della Rossa. Stalaktiten, Stalagmiten und riesige S\u00e4le, vom Wasser \u00fcber Millionen von Jahren geformt: ein unvergessliches Erlebnis f\u00fcr Gro\u00df und Klein.',
+                    t9_dist: '&rarr; 75 Minuten mit dem Auto'
+                },
+                servizi: {
+                    s1: 'Fr\u00fchst\u00fcck inklusive',
+                    s2: 'Kostenloses WLAN',
+                    s3: 'Kostenloser Parkplatz',
+                    s4: 'Klimaanlage',
+                    s5: 'Haustiere willkommen'
+                },
+                chi_siamo: {
+                    label: 'Unsere Geschichte',
+                    title: '\u00dcber Uns',
+                    text: '<p>Das Casale dell\u2019Acquabona ist ein familiengeführtes Landhaus inmitten der gr\u00fcnen H\u00fcgel von Montefanovecchio. <strong>Marco und Celina</strong> empfangen Sie mit der herzlichen Gastfreundschaft der Marken, zusammen mit ihren unzertrennlichen Collies <strong>Astro und Luna</strong>.</p><div class="motto">\u00abHier gibt die Natur den Rhythmus vor \u2014 nicht die Uhr.\u00bb</div><p>F\u00fcnf mit Sorgfalt und Schlichtheit eingerichtete Zimmer, eine K\u00fcche, die die Traditionen dieses Landes erz\u00e4hlt, und ein Panorama, das den Atem raubt: Das ist das Casale. Ein Ort zum Entschleunigen, Durchatmen und die Freude am Authentischen neu entdecken.</p>'
+                },
+                recensioni: {
+                    label: 'G\u00e4stebewertungen',
+                    title: 'Was Unsere G\u00e4ste Sagen',
+                    subtitle: '\u00dcber 100 positive Bewertungen auf Booking, TripAdvisor und Google',
+                    r1_text: '\u00abBezaubernder Ort, saubere und gepflegte Zimmer. Das Essen ist au\u00dfergew\u00f6hnlich, gro\u00dfz\u00fcgige Portionen und alles echt. Marco und Celina sind fantastische Gastgeber.\u00bb',
+                    r2_text: '\u00abWundersch\u00f6ner Agriturismo, atemberaubender Blick \u00fcber die H\u00fcgel. Der Koch ist hervorragend, die traditionelle K\u00fcche der Marken in ihrer besten Form. Wir kommen bestimmt wieder!\u00bb',
+                    r3_text: '\u00abAbsolute Ruhe, herzlicher Empfang und ein hervorragendes Preis-Leistungs-Verh\u00e4ltnis. Die Hunde des Casale sind bezaubernd. Perfekt, um vom Alltag abzuschalten.\u00bb'
+                },
+                contatti: {
+                    title: 'Besuchen Sie Uns',
+                    indirizzo_label: 'Adresse',
+                    contatti_label: 'Kontakt',
+                    checkin_label: 'Check-in / Check-out',
+                    checkin_text: 'Anreise: 15:00 &ndash; 20:00 Uhr<br>Abreise: bis 11:00 Uhr',
+                    cta: 'Informationen Anfragen'
+                },
+                footer: {
+                    logo: 'Casale dell\u2019Acquabona',
+                    copyright: '\u00a9 2026 Casale dell\u2019Acquabona. Alle Rechte vorbehalten.'
+                },
+                modal: {
+                    title: 'Buchen Sie Ihren Aufenthalt',
+                    tipo: 'Art des Aufenthalts',
+                    checkin: 'Anreise',
+                    checkout: 'Abreise',
+                    nome: 'Vorname',
+                    cognome: 'Nachname',
+                    email: 'E-Mail',
+                    telefono: 'Telefon',
+                    note: 'Anmerkungen (optional)',
+                    placeholder: 'Allergien, Ankunftszeit, besondere W\u00fcnsche...',
+                    submit: 'Anfrage Senden'
+                },
+                booking: {
+                    text: '<strong>Casale dell\u2019Acquabona</strong> &mdash; Direkt buchen und OTA-Provisionen sparen',
+                    cta: '&#9742; Direkt Buchen'
+                },
+                cookie: {
+                    full_text: 'Wir verwenden Cookies, um Ihr Surf-Erlebnis zu verbessern und den Website-Verkehr zu analysieren. Durch Fortfahren akzeptieren Sie unsere <a href="#" onclick="return false;">Cookie-Richtlinie</a>.',
+                    accept: 'Akzeptieren',
+                    reject: 'Ablehnen'
+                },
+                email: {
+                    greeting: 'Guten Tag, ich m\u00f6chte buchen: ',
+                    name_label: '\nName: ',
+                    email_label: '\nE-Mail: ',
+                    phone_label: '\nTelefon: ',
+                    checkin_label: '\nAnreise: ',
+                    checkout_label: '\nAbreise: ',
+                    notes_label: '\nAnmerkungen: ',
+                    subject: 'Buchungsanfrage - '
+                },
+                meta: {
+                    title: 'Casale dell\u2019Acquabona | Landgut in Montefano, Marken',
+                    description: 'Casale dell\u2019Acquabona: Charmantes Landgut in den H\u00fcgeln von Montefano (MC). Zimmer mit Sichtbalken, Marken-K\u00fcche, 20 Min. vom Meer und Recanati.'
+                }
+            }
+        };
+
+        // ===== setLanguage Function =====
+        function setLanguage(lang) {
+            if (!translations[lang]) { return; }
+            currentLang = lang;
+
+            // Helper: get nested value from translations object
+            function getTranslation(key) {
+                var parts = key.split('.');
+                var obj = translations[lang];
+                for (var i = 0; i < parts.length; i++) {
+                    if (obj && obj[parts[i]] !== undefined) {
+                        obj = obj[parts[i]];
+                    } else {
+                        return null;
+                    }
+                }
+                return obj;
+            }
+
+            // 1. Update all [data-i18n] elements (textContent)
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var val = getTranslation(el.getAttribute('data-i18n'));
+                if (val !== null) { el.textContent = val; }
+            });
+
+            // 2. Update all [data-i18n-html] elements (innerHTML)
+            document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+                var val = getTranslation(el.getAttribute('data-i18n-html'));
+                if (val !== null) { el.innerHTML = val; }
+            });
+
+            // 3. Update all [data-i18n-placeholder] elements
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+                var val = getTranslation(el.getAttribute('data-i18n-placeholder'));
+                if (val !== null) { el.placeholder = val; }
+            });
+
+            // 4. Update <html lang> and <body data-lang>
+            document.documentElement.lang = lang;
+            document.body.setAttribute('data-lang', lang);
+
+            // 5. Update meta title and description
+            var metaTitle = getTranslation('meta.title');
+            var metaDesc = getTranslation('meta.description');
+            if (metaTitle) { document.title = metaTitle; }
+            if (metaDesc) {
+                var metaEl = document.querySelector('meta[name="description"]');
+                if (metaEl) { metaEl.setAttribute('content', metaDesc); }
+            }
+
+            // 6. Save preference
+            localStorage.setItem('lang', lang);
+
+            // 7. Highlight active flag button
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                var btnLang = btn.getAttribute('onclick').match(/'(\w+)'/);
+                if (btnLang && btnLang[1] === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // 8. Update lightbox gallery captions cache
+            if (typeof galleryData !== 'undefined') {
+                var galleryItems = document.querySelectorAll('.gallery-item');
+                galleryItems.forEach(function(item, i) {
+                    var label = item.querySelector('.gallery-label');
+                    if (label && galleryData[i]) {
+                        galleryData[i].caption = label.textContent;
+                    }
+                });
+            }
+        }
+
+        // ===== Auto-detect browser language =====
+        (function() {
+            var saved = localStorage.getItem('lang');
+            if (saved && translations[saved]) {
+                setLanguage(saved);
+                return;
+            }
+            var browserLang = (navigator.language || navigator.userLanguage || 'it').slice(0, 2).toLowerCase();
+            if (browserLang === 'en' || browserLang === 'de') {
+                setLanguage(browserLang);
+            }
+            // default: Italian (already in HTML)
         })();
     </script>
 
