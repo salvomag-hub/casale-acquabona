@@ -221,7 +221,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2.5rem;
+            gap: 2rem;
+            padding-top: 5rem;
+            overflow-y: auto;
         }
 
         .mobile-menu.active { display: flex; }
@@ -1293,13 +1295,26 @@
 
         .mobile-lang-switcher {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
         .mobile-lang-switcher .lang-btn {
-            font-size: 1.8rem;
-            opacity: 0.4;
+            font-size: 2rem;
+            opacity: 0.5;
+            min-width: 48px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            -webkit-tap-highlight-color: rgba(201, 169, 97, 0.3);
+        }
+
+        .mobile-lang-switcher .lang-btn:active {
+            opacity: 0.9;
+            transform: scale(1.15);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .mobile-lang-switcher .lang-btn.active {
